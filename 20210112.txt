@@ -1,0 +1,174 @@
+*Application Architecture의 변화에 따른 사용 기술
+
+1. Desktop App = Standalone App
+
+1단계
+[App]
+
+2단계
+         저장
+[App]  --->  [RAM]
+[App]  <---  [RAM]
+         읽기
+- 전원이 귾기면 Data는 지워진다.
+- 배열
+- LinkedList, Stack, Queue
+
+3단계
+         저장
+[App]  --->  [파일]
+[App]  <---  [파일]
+         읽기
+- 전원이 끊겨도 Data로 유지 -> Persistence
+- File I/O API = Application Programming Interface
+- Java.io.* 패키지 클래스
+
+*Application Architecture의 변화에 따른 사용 기술
+
+2. Desktop Application = Client / Server
+
+4단계 -> 3단계의 문제점(파일 공유) 해결
+
+사용자1 -> [App] - [File]
+사용자2 -> [App] - [File]
+다른 사람이 작업한 Data를 공유하기 불편하다.
+그래서 서버 프로그램을 이용하여 사용자가 요청하면 바로 응답하는
+시스템으로 이루어진다.
+
+5단계 -> 4단계의 문제점(Data처리의 복잡성) 해결
+
+Data 처리 전문 S/W에게 위임
+     DBMS(Oracle, MS-SQL, MySQL, MariaDB(무료), Altibase, Tibero, Cubrid)
+- Data 공유가 더 정교하다
+- Data 다루기가 편하다
+- SQL -> DBMS에게 Data 처리를 요구할 때, 작성하는 명령어 작성 문법
+- JDBC(Java Data API) -> DBMS와의 통신담당
+	- DBMS와 통신하기 위해 Networking 프로그래밍을 할 필요가 없다.
+
+<Client>App -> 요청 -> <Server>DBMS -> I/O -> File
+<Client>App <- 응답 <- <Server>DBMS <- I/O <- File
+
+6단계 -> 5단계의 문제점(App 변경 시, PC에 재설치) 해결
+
+Application Server
+	- App의 주요 기능을 서버에서 실행
+	- Client는 단지, 사용자의 입력을 서버에 전달하고,
+	  서버가 응답한 결과를 화면에 출력하는 일만 한다.
+사용자 -> [App[UI처리]] -> 요청 -> [DBMS[데이터처리]]
+
+Network API - APP-Server 구현
+
+Multitasking 구현
+ - Thread -> ThreadPool
+
+7단계 -> 6단계의 문제점(C/S 구현 방식이 회사나 개발자마다 다름) 해결
+
+문제점
+ - 유지보수의 일관성이 없음.
+ - Client/Server 간의 호환이 안됨.
+ - 구현이 복잡하다.
+
+ApplicationServer + Web = Web Application Server(WAS)
+ - Servlet/JSP
+ - MVC 아키텍쳐
+ - Spring WebMVC
+ - HTML, CSS, JavaScript
+
+이점
+ - 개발자는 C/S 통신 프로그래밍을 할 필요가 없다
+ - 멀티태스킹(멀티쓰레딩) 처리할 필요가 없다
+ - Client/Server 작성할 필요가 없다
+ - 오직, 클라이언트 요청 처리를 수행하는 App 개발만 집중
+
+*프로그래밍 연습
+
+Mini-PMS
+
+- 실습 프로젝트 : mini-pms(프로젝트 관리 시스템)
+	- 1-A단계 : 자바 프로젝트 폴더 준비	
+		- gradle 빌드 도구를 사용한다.
+		- Maven 빌드 도구의 표준 디렉토리 구조로 자바 프로젝트 폴더를 구성한다.
+
+	- 1-B단계 : 프로젝트를 이클립스 IDE로 임포트 하기
+		- build.gradle 파일을 편집한다.
+		- 'clipse' Gradle플러그인 추가
+		- '$ gradle clipse` 명령을 실행하여 이클립스 IDE 관련
+		   설정 파일을 설정한다.
+	
+	- 1-C단계 : 프로젝트에 버전 관리 시스템 Git을 적용하기
+		- 
+
+
+1. CMD -> git폴더에서 mkdir bitcamp-project
+2. bitcamp-project -> gradle init 명령
+3. 2번(Applicaton) 선택 -> 3번(Java) 선택 -> 1번(no) 선택 -> 1번(Groovy) 선택
+-> 1번(JUnit 4) 선택
+4. 그냥 엔터
+5. 패키지명 : com.eomcs.pms
+
+resource 폴더에 readme.md 생성
+////
+# 애플리케이션 일반 자원 폴더
+
+애플리케이션을 실행하는 동안 사용할
+설정 파일 등을 두는 폴더이다.
+예) jdbc.properties, mapper.xml
+///
+저장 후 복사하고, test 폴더 resource 폴더 안에 붙여넣기 후,
+///
+# 테스트 자원 폴더
+
+애플리케이션을 테스트 하는 동안 사용할
+설정 파일 등을 두는 폴더이다.
+예) jdbc.properties, mapper.xml
+////
+
+6. 다 끝나면, CMD에서 gradle run 명령
+
+7. build.gradle에 플러그인 id 'eclipse' 추가하고 저장한다.
+8. eclipse에서 import를 bitcamp-project 폴더를 선택한다.
+9. properties에서 Java Build Path에 가서 패키지 아래 전까지만 선택하고 적용
+
+9. gitignore에 추가할 것 (gitignore.io 사이트)
+검색어 : java, java-web, linux, windows, macos, gradle, node, visualstudiocode, eclipse
+
+*.exe
+node_modules/
+temp/
+Debug/
+Release/
+html-exam/
+.project
+.classpath
+
+10. 백업하기
+
+*Test Framework
+*.java -> *.class -> 각 메소드가 요구사항에 맞게 동작하는지 자동검사 ->
+Test Framework 
+
+*DSL - Domain-Specific Language
+빌드도구
+Ant(build.xml)[XML] -> Maven(pom.xml)[XML] -> Gradle(build.gradle)[Groovy]
+빌드 설정 정보 (   )
+Build Script 파일 [   ]
+
+*SCM(Software Configuration Management) 의 개념
+ - 형상 관리 시스템(=버전 관리 시스템) 소개
+ - CSV, SCM, Git의 차이점
+
+- 학습 목표 달성 확인 목록
+	- [] 시스템 소프트웨어와 애플리케이션 소프트웨어를 설명할 수 있는가?
+	A : 시스템 소프트웨어는 하드웨어를 관장하고, OS위에서 사용자가 직접 사용하는 프로그램이 애플리케이션 소프트웨어
+	- [] 애플리케이션 아키텍처의 종류와 특징을 설명할 수 있는가?
+	- [] Gradle 빌드 도구를 사용하여 자바 애플리케이션 프로젝트를 구성할 수 있는가?
+	- [] Gradle을 사용하여 애플리케이션을 실행(Run)하고 빌드(Build) 할 수 있는가?
+	- [] Gradle을 사용하여 Eclipse IDE 프로젝트로 전환할 수 있는가?
+	- [] 형상 관리 시스템이 무엇인지 알고 있는가?
+	- [] CSV, Subversion, Git 버전 관리 시스템의 차이점을 이해하고 있는가?
+	- [] 프로젝트를 git 저장소로 설정할 수 있는가?
+
+
+
+
+       

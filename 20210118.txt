@@ -1,0 +1,77 @@
+*gradle eclipse
+ - gradle 최신 버전은 app을 프로젝트 폴더명으로 쓰이기 때문에, 아래와 같이 한다.
+이클립스에서 Import할 때,
+build.gradle 코드에서
+eclipse {
+	project {
+		name = "원하는 이름"
+	}
+}
+
+위 코드를 추가하고 저장한 뒤,
+CMD - gradle eclipse 입력하고, 다시 Import하기
+
+*UTF-8 코드 추가
+tasks.withType(JavaCompile) {
+    // $javac -encoding UTF-8 ...
+    options.encoding = 'UTF-8';
+}
+
+
+
+*JAVA_HOME 과 PATH
+ - path는 bin 폴더를 지정하고
+ - JAVA_HOME은 graalvm폴더까지만 지정
+
+*git clone 팁
+ - git clone "url" 원하는이름으로 하면 그 이름으로 폴더가 생성된다.
+ - Ex : git clone https://github.com/someone/some.git  sola
+ - some폴더명이 sola로 바뀜
+
+*gradle clipse
+ - eclipse 프로젝트 설정 파일 생성
+	- .classpath
+	- .project
+	- .settings
+ - eclipse에서 프로젝트를 관리할 때 사용하는 파일
+     - 이 파일이 있어야만 eclipse IDE에 프로젝트를 등록(import)할 수 있다
+     - 이 파일이 없으면 eclipse를 일반 폴더로 간주한다.
+     - 즉, import할 프로젝트로 인식하지 않는다.
+     - import 불가
+
+1-a단계
+ - $gradle init - 자바 프로젝트 폴더 생성
+1-b단계
+ - build.gradle 변경
+
+
+*메소드끼리 공유하기
+ 
+
+*refactoring
+ - 코드를 유지보수하기 쉽게 하기 위해 하는 것
+
+
+*switch문
+ - String command = keyboardScan.nextLine();
+ - switch(command.toLowerCase()) {
+ - .toLowerCase() 메소드는 입력값이 대문자를 소문자로 바꿔준다.
+
+*메소드 signature
+ - void hello(String name) { 에서
+ - hello(String name)을 메소드 signature 라고 불리고
+ - { } 안에 있는 내용을 메소드 body라고 불림
+
+
+
+- 학습 목표 달성 확인 목록
+	- [] 환경 변수 JAVA_HOME과 PATH의 용도를 설명할 수 있는가?
+	- [] gradle 설정을 통하여 이클립스 프로젝트 이름을 변경할 수 있는가?
+	- [] 메소드를 정의할 수 있는가?
+	- [] 정의한 메소드를 사용할 수 있는가?
+	- [] 메소드 시그니처, 메소드 바디, 파라미터, 아규먼트 용어를 설명할 수 있는가?
+	- [] 메소드 문법을 사용했을 때 이점은 무엇인가?
+	- [] 리팩토링의 의미가 무엇인지 아는가?
+	   - 코드를 묶거나 쪼개서 유지보수 하기 좋은 구조로 소스 코드를 정리하는 것
+
+

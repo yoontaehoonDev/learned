@@ -1,0 +1,113 @@
+! 환경 변수 위치 확인하기(사용하는 버전을 최상위로)
+PATH에서 설정할 때 bin 폴더까지 잡기
+
+bin(binary) = 실행파일 위치
+conf = 설정파일 위치
+lib = 타인이 작성해놓은 코드
+
+환경변수 - 프로그램이 파일의 위치를 찾을 때 사용
+
+- 바이트코드 프로그래밍
+	- 직접 바이트코드를 작성해보기
+	- 자바 언어를 이용한 프로그래밍의 이점을 이해하기
+	- subline 에디터 설치
+	- HelloWorld.class 작성하기
+
+
+16진수 (10 = 16)
+4비트 표현 가능 범위 = (10진수 - 15) (16진수 - F) (2진수 - 1111)
+8비트 - 1바이트
+
+.jar <- Java Archive 줄임말
+jar는 클래스의 집합체
+
+
+1. 소스 파일 - 명령어 집합체
+
+중간언어 - VM언어
+
+VM언어 방식(인터프리터 방식)
+- Java, Kotlan, Scala, Groovy로 코드를 짜면, 바이트코드가 생성되고,
+  JVM을 통해 프로그램이 실행된다.
+
+LLVM 방식(컴파일 방식)
+IR을 만들고 컴파일
+
+바이트코드 = portable code = p-code
+
+src/hello.java (컴파일)
+bin/hello.class (실행)
+
+
+javac -d bin src/Hello.java
+           .class 파일을 둘 폴더 
+
+경로지정 - java -classpath bin 파일명(ex : hello)
+	  java -cp bin 파일명(ex : hello)
+
+set CLASSPATH=c:경로
+
+main -> java
+main -> resources
+
+java -cp bin a/Hello (주의할 점 : bin하위 폴더에서 실행시킬 땐, 스페이스 해야 함)
+
+bitcamp-study/src/main/java/Hello.java <- 무소속
+		      /java/a/Hello.java <- 소속
+
+a는 package라 불림
+소속과 무소속의 차이는 package 존재 여부
+
+javac -d bin src/main/java/a/Hello.java 입력하면,
+bin/a(패키지)/Hello.class 가 생성됨
+
+java -cp bin a(패키지)/Hello
+java -cp bin a.Hello
+위 둘다 가능함
+
+빌드 도구 
+ant(설정 파일 : build.xml)
+maven(설정 파일 : pom.xml)
++ build 작업을 기술하는 방법 - XML -> groovy 프로그래밍 -> 더 정교하게 빌드 행위 제어
+
+gradle(설정 파일 : build.gradle)
+
+* XML 검색해서 공부
+
+HTML
+CSS + bootStrap
+JavaScript + jQuery + Facebook 로그인
+XML
+SQL
+         Java
+Mybatis + JDBC API
+Spring Framework
+JSP/Servlet
+
+빌드도구 : git + gradle
+
+* Java Package 명명
+- 도메인명 사용 -> 거꾸로
+- com.naver(도메인명).mail(제품명 or 서비스명).controller(역할).sender(클래스명)
+
+* Java 소스 파일 인코딩과 컴파일
+
+
+- 학습 목표 달성 확인 목록
+	- [] bytecode(portable code, p-code)가 무엇인지 이해하는가?
+	A : 바이트코드는 클래스파일이며, JVM을 통해 실행된다.
+	- [] 바이트코드를 직접 작성하는 것보다 소스 파일을 작성해서
+	     컴파일하는 것이 낫다는 것을 이해하는가?
+	A : 바이트코드를 직접 작성하려면, 기계어와 유사한 코드를 소스 파일의 양보다
+	    수십배 더 많이 작성해야 하기 때문에 비효율적이다.
+	- [] 빌드 도구가 무슨 일을 하는지 알고 있는가?
+	A : 빌드 도구는 개발자가 소스코드 및 파일들을 유지보수를 용이하게 위해 사용한다.
+	- [] 대표적인 자바 빌드 도구의 종류를 말할 수 있는가?
+	A : Ant, Maven 그리고 Gradle이 있다.
+	- [] 각 빌드 도구의 설정 파일을 구분할 수 있는가?
+	A : Ant(build.xml) Maven(pom.xml) Gradle(build.gradle)
+	- [] 중간 언어를 이용하는 VM방식과 LLVM방식의 특징을 이해하는가?
+	A : VM방식은 바이트코드가 VM을 통해 어떤 OS에서도 실행이 가능하고,
+	    LLVM방식은 중간 언어를 통해 각 CPU 컴파일러에 맞게 실행된다.
+
+

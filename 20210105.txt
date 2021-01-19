@@ -1,0 +1,147 @@
+CPU에 맞춰서 OS를 제작
+
+C 명령어를 작성하고 Compiler가 번역해서 OS를 제작
+OS는 기본적으로 C compiler가 내장되어 있음
+
+1. 컴파일 방식
+
+hello.c 생성 -> 컴파일러 작동(hello.obj 생성) + library포함 -> 링커 실행 -> exe파일 생성
+
+
+2. 인터프리터 방식
+
+Hello.js 생성 -> node.exe(javaScript 명령어 실행) -> JS엔진 - > 실행
+(문법 검사를 하나하나 하기 때문에 하이브리드 보다는 느리다)
+
+3. 하이브리드 방식
+
+Hello.java 생성 -> Hello.class(바이트코드) 생성 -> JVM(바이트코드 인터프리터) -> 실행
+
+
+JRE = Java Runtime Environment
+
+JDK - Java Development Kit
+
+Java EE (Enterprise Edition) (Java SE 포함 X)
+- 웹 프로그래밍 관련 도구
+- 분산 프로그래밍 관련 도구
+- 자원 관리 관련 도구
+
+Java ME(Micro Edition)
+- embedded 관련 도구
+
+★ 설치 도구
+1. GraalVM
+
+1. Graalvm 다운로드 java11-windows-amd64-20.3.0.zip
+
+2. graalvm 압축 풀고, windows-amd폴더가 있으면 삭제하고 안의 있는 폴더만 java 폴더 안에 넣기
+
+3. 시스템 환경 변수 -> C:\java\graalvm-ce-java11-20.3.0\bin
+
+4. 새 시스템 변수 - 변수 이름 : JAVA_HOME
+	          변수 값 : C:\java\graalvm-ce-java11-20.3.0
+
+5. CMD : 확인 코드 -> echo %JAVA_HOME%
+
+2. 이클립스 설치
+
+1. eclipse.org -> Download -> Select Another Mirror -> Pukyong Naitional University
+
+2. Eclipse IDE for Enterprise Java Developers -> Java 11+ VM - 11.0.2버전
+설치 폴더가 안 잡힐 시 -> user\eclipse\jee-2020-12
+
+3. CMD -> gu available
+
+4. CMD -> gu install native-image
+
+5. CMD -> native-image
+
+6. java Hello 를 실행했을 때, 오류가 뜬다면, 컴파일을 다시 하고 실행
+
+7. CMD -> native-image Hello (오류 뜨면, https://www.microsoft.com/en-gb/download)
+
+8. Developer Tools -> visual studio 다운로드
+체크할 것 
+1. 최신 v142 빌드 도구용 C++ MFC
+2. C++/CLI 지원
+3. C++ clang 도구
+4. MSVC v141 - VS 2017 C++ x64/x86 빌드 도구
+
+9. 이클립스 실행 -> 다시 물어보지 않기 체크
+
+10. Preferences -> Apperance -> Colors and Fonts
+ 
+11. naver d2 coding -> Ver 1.3.2 클릭 -> D2Coding-Ver1.3.2...zip 다운
+
+12. 압축 풀고 D2CodingAll 폴더 안의 파일 실행 -> 설치 클릭
+
+13. basic -> Text Font 클릭 -> Edit 클릭 -> D2Coding 선택 후, 확인
+
+14. google java style xml 검색 후, https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml
+
+15. styleguid 클릭 -> eclipse-java-google-style.xml 클릭 -> Raw 클릭 -> Ctrl + S 눌러서 저장
+
+16. Java -> Code Style -> Formatter -> import -> XML파일 선택
+
+17. Java -> Editors -> Save Actions -> Perfomr the selected actions on save 체크하기
+
+18. Additional actions 체크 -> Configure 클릭 -> Code organizing 탭에서 Correct indentation 체크
+
+19. Apply 후 -> Installed JREs -> standard VM 클릭 후 -> 디렉토리에서 graalvm 폴더 선택 후 finish 클릭
+
+20. graalvm 체크하기 -> Web -> CSS Files, HTML Files, JSP Files -> Encoding -> UTF-8 -> Apply
+
+
+100. eomcs-docs -> devtool -> 개발도구 설치 및 준비 문서 참고
+
+gu를 못 찾을 때 
+echo %PATH%
+
+
+
+
+
+gu(graalVM update)
+
+
+http://tomcat.apache.org/
+Tomcat 9
+Core : zip 파일 다운로드
+
+
+
+톰캣 서버 -> Web App 실행(역할) -> DBMS(정보)
+검증코드 = 해쉬코드(디지털 지문) 각 파일의 고유 코드
+
+Hash Generator
+파일을 생성 후, 계산식 프로그램(알고리즘)을 통해 해쉬코드 추출
+
+GUI, CLI(Command Line Interface)[Shell 이라고 불림 -> (명령 프롬프트)(PowerShell)] -> OS -> 컴퓨터
+ShellScript 문법과 CLI 문법은 엄연히 다르다.
+ShellScript는 유닉스 기반
+
+
+계산식 종류
+1. MD4	2. MD5	3. SHA	4. SHA-256    5. SHA-512
+
+해쉬코드 : 다운받은 파일이 오리지널 파일과 일치하는지 확인해주는 코드
+	  (사용 목적 : 두 데이터가 같은지 비교할 때 사용) Ex) 인증서
+해쉬코드 추출 : "get-filehash -algorithm sha512 '파일명.확장자' | Format-List" 입력
+
+- 학습 목표 달성 확인 목록
+	- [] 컴파일 방식과, 인터프리터 방식, 하이브리드 방식의 특징을 설명할 수 있는가?
+	- [] 컴파일/인터프리터/하이브리드 방식의 예제를 작성하고 실행시킬 수 있는가?
+	- [] GUI와 CLI가 무엇인지 알고 있는가?
+	- [] OS에서 shell 과 Shell Script 의 관계를 이해하는가?
+	- [] 윈도우 OS에서 "명령프롬프트"와 "파워쉘"의 차이점을 이해하는가? 	
+	- [] 해쉬값 = 디지털 지문이 무엇인지 알고 있는가?
+	- [] 알고리즘의 뜻을 말할 수 있는가?
+	- [] MD5, SHA-1, SHA256, SHA512, PGP, 등이 무엇을 의미하는지 알고 있는가?
+	- [] Windows/maxOS 에서 명령어를 사용하여 해시 코드를 알아 낼 수 있는가?
+	- [] JDK를 설치하고 환경 변수(JAVA_HOME, PATH)를 설정할 수 있는가?
+	- [] Java IDE(Ex : 이클립스)를 설치할 수 있는가?
+	- [] Java IDE(Integrated Development Environment, 예 : Eclipse)를 설치하고 설정할 수 있는가?
+
+
+

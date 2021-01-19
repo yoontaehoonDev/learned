@@ -1,0 +1,55 @@
+.jar
+안에
+module
+안에
+package
+안에
+class
+안에
+method = function = procedure = operator
+안에
+code
+
+*가변 파라미터
+ - 메소드명(타입... 변수명) - ...은 오직 3개만
+ - Ex) hello(String... names)
+
+*JVM영역
+Heap
+ - new 명령으로 생성한 변수 [배열]
+
+Method Area
+ - 클래스 정보
+ - 메소드 블럭
+
+Stack
+ - 로컬 변수
+
+*6단계 -> 7단계 (class문법)
+ - class문법 = 메소드 분류
+
+*GRASP 설계 패턴
+ - General Responsibilty Assignment Software Patterns
+ - 클래스를 정의하는 바람직한 방법
+
+ - Information Exper = 정보를 사용하 쪽에 책임을 맡겨라
+ - Creator = 객체를 사용하는 쪽 생성을 맡겨라
+ - Low Coupling = 클래스간의 관계를 줄여라
+ - High Cohesion = 가능한 한 역할만 수행하게 해라.
+
+
+
+Java에서는 로컬 변수의 메모리 값을 넘길 수는 없다
+
+ - 학습 목표 달성 확인 목록
+	- [] 메소드를 정의하고 사용할 수 있는가?
+	- [] 파라미터와 아규먼트에 대해 설명할 수 있는가?
+	- [] call by value 와 call by reference에 대해 예제를 들어 설명할 수 있는가?
+	- [] 클래스 문법의 용도를 설명할 수 있는가?
+	- [] 역할에 따라 메서드를 분류하여 클래스로 정의할 수 있는가?
+	- [] 클래스에 등록된 메서드를 호출할 수 있는가?
+
+
+
+
+

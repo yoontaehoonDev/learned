@@ -1,0 +1,96 @@
+- 실습 프로젝트 : mini-pms(프로젝트 관리 시스템)
+	- 1-C단계 : 프로젝트에 버전 관리 시스템 Git을 적용하기
+		- `$ git init` 실행
+		- `.git/` 폴더의 용도 이해
+		- github.com 에저장소 생성
+		- 로컬 저장소와 원격 저장소를 연결
+		- 로컬 저장소의 변경 내용을 원격 저장소에 업로드
+	- 2-A단계 : 리터럴과 콘솔 출력 다루기
+		- `System.out.print()` 사용
+		- `System.out.println()` 사용
+		- `System.out.printf()` 사용
+		- 문자열 리터럴의 연결
+	
+
+$ git init의 용도
+ - .git/ <- git local 저장소 - 백업 대상들이 commit으로 인해 저장됨
+ - app/ <- 프로젝트 - 백업 대상
+ - gradle/ <- gradle S/W 자동 설치 프로그램 - 백업 대상
+ - .gradle/ <- gradle을 실행하는 동안 임시 작업 폴더 <- 백업 제외 대상
+ - .gitignore <- 백업 제외 대상 목록
+
+app/ gradle/ .gradle/ <- 작업 폴더
+
+*git 과 branch
+1.1.1에서
+첫 번째는 가장 큰 업데이트
+두 번째는 기능 추가
+세 번째는 퍼포먼스 향상 및 버그 수정
+
+*Eclipse IDE
+
+ Eclipse EE = JDT, WTP 포함
+ [eclipse] + 플러그인(JDT, WTP, CDT)
+ - JDT = 자바 기본 에디터 + a
+ - WTP = 웹에디터 + a
+ - CDT = C기본 에디터 + a
+
+★플러그인 추가 방법
+1. Help - Install New Software = 별도로 제공된 파일을 등록
+2. Help - Eclipse Marketplace = 이클립스 앱스토어에서 다운로드
+ - cdt 엔터 -> eclipse c/c++ 인스톨 - Preview 체크해제
+
+*Overloading
+같은 이름의 함수를 사용하는 것 - 오버로딩(overloading)
+
+*Overriding
+C에서는 X
+C++에서는 O
+ print(int a) { - }
+ print(float a) { - }
+ 
+C ------------------------> C++ --------------------> Java
+   코드를 잘 분류하고	     플랫폼에 독립 -> 컴파일 -> 중간언어 -> VM
+   관리를 쉽게 하기 위해	     (실행환경)		- 명령 실행 속도 저하
+   (단점) 명령실행속도 저하	     OS, CPU
+
+
+*(인터프리터 VM)의 실행 속도 개선
+
+1. Just-In-Time(JIT) Compiler
+ Hello.class -> JVM = (한줄씩)읽기 -> 실행
+자주 실행하는 코드(HotSpot)
+JVM - 자주 실행하는 코드를 기계어로 번역하여,
+        별도의 메모리(Cache)에 보관해 두었다가, 실행할 때 바로 기계어를
+        OS에 던져줌으로써, 실행속도를 줄인다.(거의 Native App 수준) 
+
+ - 실행중에 HotSpot부분을 기계어로 컴파일 하기 때문에 일시적으로 느려지는 경우가 있다.
+
+2. Ahead Of Time(AOT) Compiler
+ Hello.class -> JVM -> 기계어로 번역 -> 캐시메모리에 보관
+ - 1. 프로그램을 실행하기 전에 미리 기계어로 바꿔 놓는다.
+ - 2. 이후, 실행할 때는 기계어로 바로 실행.
+ - 3. 최신 Android - App을 다운로드할 때 AOT 컴파일 수행
+단, App을 설치할 때는 느려진다.
+
+* System.in 과 Scanner
+
+
+
+
+
+- 학습 목표 달성 확인 목록
+	- [] `.git/` 폴더가 무슨 용도인지 알고 있는가?
+	- [] git 을 이용하여 로컬 저장소에 변경한 내용을 백업할 수 있는가?
+	- [] git 로컬 저장소를 원격 저장소와 연결할 수 있는가?
+	- [] git 로컬 저장소의 변경 사항을 원격 저장소에 업로드 할 수 있는가?
+	- [] 문자열 리터럴을 다룰 수 있는가?
+	- [] print(), println(), printf() 메소드를 사용할 수 있는가?
+	- [] 
+
+
+
+	
+
+
+
