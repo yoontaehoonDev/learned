@@ -1,0 +1,58 @@
+*UML - 통합 모델링 언어
+Unified - 통합
+Modeling - 머리속의 있는 생각을 글과 그림으로 표현
+Language - 규칙(문법) = 전달 기호 체계
+
+*클래스 사이의 관계
+
+class Member { 
+  String name;
+  int age;
+  boolean working;
+} 설계도
+
+- 설계도에 따라 변수 생성
+
+App에 의해 사용 당하는 객체 = App의 의존객체
+ - dependency
+
+*Domain 클래스
+ - 개발자가 시스템 목적에 맞춰서 새로 정의한 데이터 타입
+ - Value Object (VO)
+ - Data Transfer Object (DTO)
+
+
+- 학습 목표 달성 확인 목록
+	- [] UML이 무엇이고 어떤 용도로 사용하는지 아는가?
+	- [] 의존 객체(dependency)가 무엇인지 이해하는가?
+	- [] GRASP 패턴은 이해하는가?
+	- [] Information Expert 패턴에 대해 이해하는가?
+	- [] 시스템에서 다루는 데이터를 저장할 변수 설계도를 클래스로 정의할 수 있는가?
+	- [] domain, vo(value object), dto(data transfer object) 클래스의 의미를 이해하는가?
+	- [] Static 필드의 사용 범위와 그 한계를 이해하는가?
+	- [] "기술 부채"가 무엇인지 설명할 수 있는가?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
