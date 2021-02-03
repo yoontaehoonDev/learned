@@ -1,0 +1,14 @@
+*mac OS 두 종류
+1. Intel CPU
+2. m1 CPU
+ - 로제타스톤 프로그램(번역기) 사용해서 조금 느리다.
+
+JNI (Java Native Interface)
+C function을 호출할 때 사용
+
+
+
+
+
+
+
