@@ -356,7 +356,16 @@ inner class = non-static nested class
  - static 멤버는 무시한다.
  - 
 
+*Generic Programming
+ - <타입 파라미터> 리턴타입(타입 파라미터와 동일) 메소드명(타입 변수명)
+ - 여러 개의 타입을 넣을 때 Ex) <S, U, V> 리턴할 타입을 정해서 놓으면 된다.
+    U타입의 값을 리턴하고 싶으면 <S, U, V> U 로 타이핑하면 된다.
+    그리고 리턴 타입은 반드시 U의 값이여야 한다. 다른 타입은 에러가 발생한다.
 
+ - 원시 타입이 들어올 수 없다. Ex) Test<int> = X, Test<Integer> = O
+
+ - class 클래스명<타입 파라미터>
+ - 형변환을 해야 하는 상황일 때는 Object를 Generic으로 바꿔준다.
 
 
 
