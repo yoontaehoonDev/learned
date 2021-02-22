@@ -415,6 +415,8 @@ try {} catch (Exception e) {}
 *Predicate<>
  - 조건 검사 객체
 
+*스태틱은 인스턴스를 생성할 수 없다
+ - 내장변수 this가 없기 때문에
 
 
 
