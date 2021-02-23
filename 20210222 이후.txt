@@ -20,6 +20,17 @@ void m1() throws 예외클래스, 예외클래스, ... {
  - 예외가 발생하면 그 처리는 호출자에게 맡긴다.
  - 그러나, 이 메소드를 호출하는 동안 사용한 자원은 이 메소드를 종료하기 전에 해제시킨다.
 
+*RuntimeException 은 강제성이 없지만, 그래도 선언은 해두는 게 좋다.
+ - SecurityException 은 RuntimeException의 하위 클래스
+
+
+
+
+
+
+
+
+
 
 
 
