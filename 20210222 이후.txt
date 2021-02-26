@@ -76,6 +76,7 @@ Ex : void m(Class c) -> m(Some.class);
 제네릭을 사용해서 클래스를 파라미터로 받으려면
 Ex : <T> void m(Class<T> c) {} -> m(타입.class) = 
 
+
 *상속을 받은 타입
  - <T extends 클래스명> void 메소드명(Class<T> c) {} -> m(상속받은 자손들.class)
    
