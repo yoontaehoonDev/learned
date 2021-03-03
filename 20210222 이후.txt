@@ -190,6 +190,10 @@ gradle clean -> build 폴더 삭제
 gradle cleanEclipse -> eclipse 관련 설정 파일 및 폴더 삭제
 gradle eclipse -> 이클립스 설정 파일 및 폴더 생성
 
+*functional interface
+ - 추상메소드가 한 개만 있는 인터페이스
+   즉, lambda 문법 적용 가능하다.
+
 
 
 
