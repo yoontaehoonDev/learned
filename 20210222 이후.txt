@@ -184,7 +184,7 @@ search.maven.org
  - build.gradle - 디펜던시에 추가
  - cmd - 폴더 - gradle cleanEclipse - gradle eclipse 
  - eclipse 새로 고침 후, Referenced Libraries에서 gson 파일 확인
- - 
+
 
 gradle clean -> build 폴더 삭제
 gradle cleanEclipse -> eclipse 관련 설정 파일 및 폴더 삭제
@@ -194,7 +194,18 @@ gradle eclipse -> 이클립스 설정 파일 및 폴더 생성
  - 추상메소드가 한 개만 있는 인터페이스
    즉, lambda 문법 적용 가능하다.
 
+*추상클래스와 인터페이스 자체를 리턴할 순 없다.
+ - 추상클래스나 인터페이스를 구현한 서브클래스의 객체를 리턴한다.
 
+*데코레이터는 항상 같은 조상을 가지고 있어야 한다.
+
+*소켓
+ - Sender에서 서버IP를 입력하고, Receiver에서 먼저 실행하면 된다.
+
+*Blocking Mode
+ - 요청한 작업이 성공하거나 에러가 발생하기 전까지는 응답을 리턴하지 않음.
+*Non-Blocking Mode
+ - 요청한 작업의 성공 여부와는 상관없이 바로 결과를 리턴함.
 
 
 
