@@ -1,0 +1,29 @@
+마리아DB
+설치 과정
+ - mariadb.org
+   다운로드 최신 버전 - x64 - South Korea
+
+msi로 설치
+utf8 체크
+Install as service 체크
+3306 포트 사용
+서비스에서 체크
+buffer pool size 는 default값으로 설정
+
+1. mariadb.org 사이트 접속
+2. MariaDB Server 최신 버전
+3. 운영체제 - Windows
+4. 아키텍쳐 - x86_64
+5. 패키지 타입 - MSI
+6. Mirror - Yongbok.net - South Korea
+7. UTF-8 체크
+8. Install as service 체크
+9. 3306 포트 사용
+10. services.msc 에 SQL이나, MariaDB가 있으면 서치해서 해결법 찾기
+11. Buffer pool size 는 default 값 사용
+
+12. 시스템 환경 변수 - Path - 새로 만들기 - C:\Program Files\MariaDB 10.5\bin 저장
+13. CMD - 
+mysql -u root -p
+password : 1111
+로그아웃 - quit 또는 exit

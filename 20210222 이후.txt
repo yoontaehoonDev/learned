@@ -213,8 +213,14 @@ gradle eclipse -> 이클립스 설정 파일 및 폴더 생성
 abc.com/ 이 부분은 자원 경로
 
 
+processRequest(serverSocket.accept())
+void processRequest(Socket socket)
+ - 두 클래스 타입이 다름에도 불구하고, 서로 맞물리는 이유는
+   accept에서 socket 객체를 받기 때문이다.
+   클라이언트가 접속을 시도하면, processRequest는 실행이 되고,
+   메소드로 가서 socket에 클라이언트가 보낸 값을 받고, body를 실행한다.
 
-
+*업무에 관련된 데이터는 도메인이다.
 
 
 
