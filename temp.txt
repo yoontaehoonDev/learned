@@ -1,100 +1,64 @@
-&lt; : <
-&gt; : >
-&quot; : "
-&apos; : '
-&amp; : &
+**클래스 로딩은 단 한 번만 한다.
 
-XML entity는
-상수를 의미한다.
+*클래스 로딩
+스태틱 멤버(변수, 메소드), 인스턴스 생성, Class.forName()을 이용해서 로딩할 때.
 
+Class.forName()으로 로딩할 경우, fully qualified class name으로 해야 한다.
+Class.forName("com.yoon.pms.Test"); <- 가능
+Class.forName("Test"); <- 불가능
 
-*CDATA 란?
- - XML 파서(parser)에게 해당 블록의 내용물이 단순 텍스트임을 알려주는 명령이다.
-<![CDATA[	
-문장
-]]>
+레퍼런스 선언은 클래스 로딩과 다르다.
+배열 레퍼런스
+레퍼런스 배열 도 마찬가지다.
 
-사용 시기 : 내용물 안에 XML
+스태틱 중첩 클래스를 로딩할 경우,
+바깥 클래스는 로딩하지 않는다.
 
-*selectList() / selectOne() / insert() / update() / delete()
- - selectList(SQL ID)
- - selectList(SQL ID, 파라미터)
- - 위와 같이, SQL을 실행할 때 오직 한 개의 파라미터만 넘길 수 있다.
- - 여러 개의 파라미터를 넘기고 싶다면, 객체에 담아서 넘겨라.
+자바 코드로 중첩 클래스를 표현할 때는
+클래스 이름에 $가 아닌 . 을 붙인다.
+Ex) com.yoon.pms.Test$A = X
+     com.yoon.pms.Test.A = O
 
+*배열타입 알아내기
+배열타입 = 타입[].class.getComponentType().getName();
+Ex) byte[].class.getComponentType().getName();
+char[].class.getComponentType().getName();
+String[].class.getComponentType().getName();
 
-* 특정 범위의 번호에 해당하는 게시글을 가져 온다.
-Map<String,Object> params = new HashMap<>();
-params.put("startNo", 5);
-params.put("endNo", 15);
+메소드 정보 추출하기
+Class<?> clazz = 클래스명.class;
+Method[] list = clazz.getMethods();
+for(Method m : list) {
+	System.out.printf(m.getName());
+}
 
-List<Board> boards = sqlSession.selectList("BoardMapper.selectBoard1", params);
+접근제어자 관계없이 모두 추출하기
+getDeclaredMethods() 메소드 사용
 
+*생성자 정보 가져오기
+Class<?> clazz = 클래스명.class;
 
+- 단일
+Constructor<?> c = clazz.getConstructor();
+System.out.printf("생성자명 : %s  파라미터 수 : %d\n", c.getName, c.getParameterCount());
 
+- 리스트
+Constructor<?>[] list = clazz.getConstrcutors();
+for(Constructor<?> c : list) {
+	System.out.printf("생성자명 : %s  파라미터 수 : %d\n", c.getName, c.getParameterCount());
+}
 
-*일반 객체를 사용하여 여러 값 넘기기
-  <insert id="insert" parameterType="board">
-  insert into x_board(title, contents, created_date)
-  values(#{title},#{content},now())
-  </insert>
-
-insert문을 실행할 때는 insert() 메소드를 호출한다.
-리턴 값은 executeUpdate()의 실행 결과이다.
-즉, insert 된 데이터의 개수이다.
-values의 {} 안의 값은 프로퍼티 즉, Board 클래스의 인스턴스명을 의미한다.
-
-SqlSessionFactory의 openSession()을 통해, SqlSession 얻을 때는
-autocommit이 기본으로 false이다.
-
-
-SqlSession 객체는 디폴트가 수동 commit 상태이기 때문에
-데이터 변경 후, commit을 반드시 실행해야 한다.
-
-
-userGeneratedKeys 속성 : 자동 증가한 PK컬럼 값을 사용할 것인지 지정한다.
-keyColumn 속성 : 자동 증가 pk 컬럼의 이름을 지정한다.
-keyProperty 속성 : 
-
-
-*autocommit - openSession(true)
- - true로 설정하면, commit()을 호출하지 않아도, 변경 사항을 즉시 테이블에 반영한다.
-
-수동 커밋 상태일 때는
-데이터 변경 후, commit()을 명시적으로 호출해야 한다.
-그래야 실제 테이블에 변경 사항이 적용된다.
-
-* #{} 과 ${} 의 차이점
- - #{} 문법의 한계
-   - #{} 문법은 오직, 값만 삽입할 수 있다.
-     SQL 코드를 삽입할 수 없다.
-
- - $[] 는 SQL 코드를 삽입할 수 있다.
-   - 단, SQL 삽입 공격이 허용된다.
-
-*한 맵에 한 객체가 들어갈 수 있다.
-맵 = 레코드
-key에는 컬럼명, value에는 컬럼의 값
-Map을 이용하여 객체 가져오기
-Map<k, v> 변수명 = sqlSession.selectOne("Mapper명.id명")
+파라미터 정보 추출
+Class<?> clazz = 클래스명.class;
+Method[] methods = clazz.getDeclaredMethods();
+for(Method m : methods) {
+     Parameter[] parameters = m.getParameters();
+	for(Parameter p : parameters) {
+		System.out.printf("%s : %s\n", p.getName, p.getType().getName());
+	}
+}
 
 
-
-*결과가 2개 이상되는 select문을 실행할 때는
- selectOne()을 사용할 수 없다.
- 하지만, 파라미터를 이용하여 사용할 수 있다.
-Board b = sqlSession.selectOne("BoardMapper.selectBoard", 1);
-
-<select id="selectBoard" resultMap="boardMap" parameterType="int">
- select 
-      board_id,
-      title,
-      contents,
-      created_date,
-      view_count
-    from x_board
-    where board_id = #{no} <- {} 안의 이름은 파라미터 타입에 맞게 지으면 된다.
-  </select>
 
 
 
