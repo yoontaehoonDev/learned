@@ -1,0 +1,75 @@
+프록시 패턴 및 트랜잭션
+
+SqlSessionProxy 클래스
+ - SqlSession 객체는 이미 존재하며, 기존의 코드를 변경할 수 없다.
+   따라서, 변경을 하기 위해서는 SqlSessionFactory 클래스를 모방하여 만들어야 한다.
+   그리고, 객체의 일부 기능만 변경하려면, 프록시 객체를 생성해야 한다.
+
+public class SqlSessionProxy implements SqlSession {
+	// SqlSession 인터페이스를 상속 받는다.
+	// 그래야 모방하여 만들 수 있기 때문이다.
+	
+	SqlSession original; <- 프록시 객체
+	boolean isInTransaction; <- 판단 필드
+
+	public SqlSessionProxy(SqlSession sqlSession, boolean transaction) {
+		this.original = sqlSession;
+		this.isInTransaction = transaction;
+	}
+	// 생성자를 선언하여 프록시 객체와 판단 필드에 값을 바로 적용한다.
+	
+public void realClose() {
+	original.close();
+}
+// 트랜잭션을 완료한 상태라면, SqlSession 객체의 자원을 해제한다.
+
+public void close() {
+	if (isInTransaction) {
+		return;
+	}
+original.close();
+}
+// 트랜잭션을 사용하는 경우에는 해제하면 안 된다.
+    왜냐하면, 사용 도중 해제를 시켜버리면, 트랜잭션 적용이 되지 않기 때문이다.
+
+SqlSessionFactory 클래스
+SqlSessionFactory 구현체의 일부 기능을 변경해서 사용하기 위해 생성한다.
+
+public class SqlSessionFactoryProxy implements SqlSessionFactory {
+	// SqlSessionProxy 클래스와 마찬가지로,
+	   전부를 받고, 나머지 일부분만 변경해서 사용하기 위해,
+	   우선, 인터페이스 구현체를 모두 구현한다.
+
+SqlSessionFactory original; <- 프록시 객체 생성
+
+ThreadLocal<SqlSessionProxy> threadLocal = new ThreadLocal<>();
+// 쓰레드 전용 보관소
+// threadLocal에는 오직 SqlSession 객체만 넣을 수 있다.
+// threadLocal 객체는 heap 영역에 인스턴스 필드로 생성되지 않는다.
+// 각 쓰레드마다 보유하는 필드이다.
+
+public SqlSessionFactoryProxy(SqlSessionFactory sqlSessionFactory) {
+this.original = sqlSessionFactory;
+}
+
+public void prepareSqlSession() {
+// 쓰레드가 작업하는 동안 사용할 SqlSession 객체를 준비
+
+SqlSessionProxy sqlSessionProxy = new SqlSessionProxy(original.openSession(false), true);
+// 수동 commit 으로 동작하는 SqlSessionProxy 객체 생성
+
+threadLocal.set(sqlSessionProxy); <- 쓰레드 전용 보관소에 SqlSessionProxy 객체를 저장한다.
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+싱글쓰레드에서 Connection 을 공유할 경우
+Standalone
+
+
+
